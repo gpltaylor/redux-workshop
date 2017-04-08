@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { getTodos, addTodo } from "./actions";
+import { getTodos, addTodo, getTopTodos, deleteTodo } from "./actions";
 import { Todo as todo } from "./components";
 
 // Data we want
@@ -12,6 +12,9 @@ const basicState = (state) => ({
 const basicDispatch = (dispatch, state) => ({
   addTodo: (message, priority) => {
     dispatch(addTodo(message, priority))
+  },
+  deleteTodo: (todo) => {
+    dispatch(deleteTodo(todo.message));
   }
 });
 

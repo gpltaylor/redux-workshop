@@ -1,4 +1,4 @@
-import { ADD_TODO } from "./actions";
+import { ADD_TODO, DELETE_TODO } from "./actions";
 
 // Reducer
 function TodoReducer(state = [{ message: 'get milk', priority: 2 }], action) {
@@ -6,8 +6,10 @@ function TodoReducer(state = [{ message: 'get milk', priority: 2 }], action) {
     case ADD_TODO:
       return [
         ...state,
-        { message: action.text, priority: action.priority }
+        { message: action.text.toUpperCase(), priority: action.priority }
       ]
+      case DELETE_TODO:
+        return state.filter(item => item.message !== action.message);
     default:
       return state
   }

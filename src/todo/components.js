@@ -28,16 +28,26 @@ export class Todo extends React.Component {
     this.props.addTodo(this.message.value, parseInt(this.priority.value, 10));
   }
 
+  deleteTodo = (e) => {
+    console.log(e);
+    this.props.deleteTodo(e);
+  }
+
   render = () => (
     <div>
-      <h1>TODO Demo</h1>
+      <h1>TODO Demo1</h1>
       <Helper />
 
-      {this.props.todos.map(item => <p key={item.message}>{item.message} ({item.priority})</p>)}
+      {this.props.todos.map(item => 
+        <p
+          key={item.message}
+          onClick={this.deleteTodo.bind(this, item)}>{item.id} {item.message} - {item.priority}</p>)
+      }
       <div>
         <input name="message" ref={item => this.message = item} />
         <input name="priority" ref={item => this.priority = item} />
         <button onClick={this.addTodo}>Add</button>
+        <button onClick={this.props.filter}>filter</button>
       </div>
     </div>
   )
