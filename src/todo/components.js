@@ -17,7 +17,7 @@ export const Helper = () => (
     </ul>
     <h4>References</h4>
     <p>
-      https://github.com/reactjs/react-redux/blob/master/docs/api.md<br/>
+      https://github.com/reactjs/react-redux/blob/master/docs/api.md<br />
       https://redux.js.org/docs/introduction/Examples.html
     </p>
   </div>
@@ -38,7 +38,7 @@ export class Todo extends React.Component {
       <h1>TODO Demo1</h1>
       <Helper />
 
-      {this.props.todos.map(item => 
+      {this.props.todos.map(item =>
         <p
           key={item.message}
           onClick={this.deleteTodo.bind(this, item)}>{item.id} {item.message} - {item.priority}</p>)
@@ -58,12 +58,19 @@ export class TodoList extends React.Component {
     this.props.addTodo(this.message.value, parseInt(this.priority.value, 10));
   }
 
+  deleteTodo = (e) => {
+    console.log(e);
+    this.props.deleteTodo(e);
+  }
+
   render = () => (
     <div>
       <h1>TODO Demo</h1>
       <p>An improved design for our TODO List.</p>
       <ul>
-      {this.props.todos.map(item => <li key={item.message}>{item.message} ({item.priority})</li>)}
+        {this.props.todos.map(item => (
+          <li key={item.message} onClick={this.deleteTodo.bind(this, item)}>{item.message} ({item.priority})</li>
+        ))}
       </ul>
       <div>
         <input name="message" ref={item => this.message = item} placeholder="enter todo" />

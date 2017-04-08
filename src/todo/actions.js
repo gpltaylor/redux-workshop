@@ -11,15 +11,9 @@ export const addTodo = (text, priority = 0) => ({
 });
 
 export const deleteTodo = (message) => {
-  return (dispatch) => {
-    dispatch(deletingTodo(message))
-
-    fetch(`/todo/${message}`, "DELETE").then(results => {
-      dispatch(deletedTodo())
-    }).error(item => {
-      dispatch(deletedTodoError())
-    });
-
+  return {
+    type: DELETE_TODO,
+    message
   }
 };
 
